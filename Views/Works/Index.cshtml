@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FinalProject_201810088.Models.Work>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirsAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manga)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drawer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AirsAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manga.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drawer.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WorkId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

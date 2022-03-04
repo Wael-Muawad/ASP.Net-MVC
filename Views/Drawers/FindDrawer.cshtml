@@ -1,0 +1,97 @@
+﻿@model FindDrawerViewModel
+
+@{
+    ViewData["Title"] = "Search for Drawer";
+}
+
+<h1>Search for Drawer</h1>
+
+
+<form asp-action="FindDrawer">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CostPerManga" class="control-label"></label>
+                <input asp-for="CostPerManga" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group text-center">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Name"></label>
+            </th>
+            <th>
+                <label asp-for="EmailAddress"></label>
+            </th>
+            <th>
+                <label asp-for="PhoneNumber"></label>
+            </th>
+            <th>
+                <label asp-for="CostPerManga"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model is null || Model.Drawers.Count() == 0)
+        {
+            <tr>
+                <td class="text-danger">
+                    No Data!
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model.Drawers)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.EmailAddress
+                    </td>
+                    <td>
+                        @item.PhoneNumber
+                    </td>
+                    <td>
+                        @item.CostPerManga
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.DrawerId" class="btn btn-outline-success">Details</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<hr />
+<div class="btn btn-outline-info">
+    <a asp-action="Index">Back to List</a>
+</div>

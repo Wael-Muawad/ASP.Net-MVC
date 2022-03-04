@@ -1,0 +1,63 @@
+﻿@model IEnumerable<FinalProject_201810088.Models.Manga>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.NoOfEpisodes)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CoverImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td class="text-center">
+                    @item.Name
+                </td>
+                <td class="text-center">
+                    @item.NoOfEpisodes
+                </td>
+                <td class="text-center">
+                    @item.Description
+                </td>
+                <td class="text-center">
+                    @if (item.CoverImage is not null)
+                    {
+                        <img src="data:image;base64, @Convert.ToBase64String(item.CoverImage)" alt="Image." width="100" height="100" />
+                    }
+                    else
+                    {
+                    <img src="~/Images/Manga.jpg" alt="Image." width="100" height="100" />
+                    }
+                </td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.MangaId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MangaId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MangaId">Delete</a>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>

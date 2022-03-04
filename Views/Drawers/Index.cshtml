@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FinalProject_201810088.Models.Drawer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p class="btn btn-outline-info">
+    <a asp-action="Create">Create New</a>
+</p>
+<p class="btn btn-outline-secondary">
+    <a asp-action="FindDrawer">Search for Drawer</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-SortBy="Name"><img src="~/Images/sorting-az.png" width="25" height="25" /></a>
+                <label asp-for="@Model.FirstOrDefault().Name"></label>
+                <a asp-action="Index" asp-route-SortBy="Name_des"><img src="~/Images/sorting-za.png" width="25" height="25" /></a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-SortBy="EmailAddress"><img src="~/Images/sorting-az.png" width="25" height="25" /></a>
+                <label asp-for="@Model.FirstOrDefault().EmailAddress"></label>
+                <a asp-action="Index" asp-route-SortBy="EmailAddress_des"><img src="~/Images/sorting-za.png" width="25" height="25" /></a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-SortBy="PhoneNumber"><img src="~/Images/sorting-az.png" width="25" height="25" /></a>
+                <label asp-for="@Model.FirstOrDefault().PhoneNumber"></label>
+                <a asp-action="Index" asp-route-SortBy="PhoneNumber_des"><img src="~/Images/sorting-za.png" width="25" height="25" /></a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-SortBy="CostPerManga"><img src="~/Images/sorting-az.png" width="25" height="25" /></a>
+                <label asp-for="@Model.FirstOrDefault().CostPerManga"></label>
+                <a asp-action="Index" asp-route-SortBy="CostPerManga_des"><img src="~/Images/sorting-za.png" width="25" height="25" /></a>
+            </th>
+            <th>
+                <label asp-for="@Model.FirstOrDefault().ProfilePicture"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.EmailAddress
+                </td>
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>
+                    @item.CostPerManga
+                </td>
+                <td>
+                    <img src="@item.ProfilePicture" alt="Image." width="100" height="100" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DrawerId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.DrawerId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DrawerId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="btn btn-outline-info">
+    <a asp-action="IndexFilter">Filtered Drawers</a>
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Manga>
+
+@{
+    ViewData["Title"] = "MangaCost";
+    double TotalMangasCost = 0;
+}
+
+<h1>Manga Cost</h1>
+
+<ol>
+
+    @foreach (var m in Model)
+    {
+        double MangaCost = 0;
+        foreach (var w in m.Works)
+        {
+            MangaCost += w.Drawer.CostPerManga;
+        }
+
+        <li>
+            <hr />
+            <h4>@m.Name  @MangaCost.ToString("c")</h4>
+            <ul>
+                @foreach (var w in m.Works)
+                {
+                    <li>@w.Drawer.Name  Cost (@w.Drawer.CostPerManga.ToString("c"))</li>
+
+                    TotalMangasCost += w.Drawer.CostPerManga;
+                }
+            </ul>
+        </li>
+    }
+
+</ol>
+
+<hr />
+<hr />
+<div class="font-weight-bold text-success">
+    <h3>Total cost = @TotalMangasCost.ToString("c")</h3>
+</div>
